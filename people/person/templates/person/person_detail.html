@@ -1,0 +1,70 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h2> personal detail </h2>
+<h1><strong>{{person.name}}</strong></h1>
+<p><strong>Phone :</strong>{{person.phone}}</p>
+<p><strong>DOB :</strong>{{person.dob}}</p>
+<p><strong> Mother :</strong>{{person.mother}}</p>
+<p><strong> Father :</strong>{{person.father}}</p>
+<p><strong> Vaccine :</strong>{{person.vaccine}}</p>
+
+
+
+<h4>Jharsewa Certificate</h4>
+<table>
+<tr>
+<th><strong>Type</strong></th>
+<th><stong>Regigistration No</strong></th>
+<th><strong>Date of Issue</strong></th>
+<th><strong>Token No</strong></th>
+</tr>
+{% for jhar in person.jharsewa_set.all %}
+<tr>
+<td>{{jhar.type}}</td>
+<td>  {{jhar.cert_no}}</td>
+<td>{{jhar.date_of_issue}}</td>
+<td>{{jhar.token_no}}</td>
+</tr>
+{%endfor%}
+</table>
+
+<h4>Issued Id</h4>
+<table>
+<tr>
+<th><strong>Type</strong></th>
+<th><stong>Id No</strong></th>
+<th><strong>Remark</strong></th>
+</tr>
+{% for id in person.identy_set.all %}
+<tr>
+<td>{{id.id_type}}</td>
+<td>  {{id.cert_no}}</td>
+<td>{{id.remark}}</td>
+</tr>
+{%endfor%}
+</table>
+
+<h4>Education</h4>
+<table>
+<tr>
+<th><strong>YOP</strong></th>
+<th><stong>Passed</strong></th>
+<th><strong>Board</strong></th>
+<th><strong>Roll No</strong></th>
+<th><strong>CGPA/%</strong></th>
+<th><strong>Scored</strong></th>
+</tr>
+{% for edu in person.education_set.all %}
+<tr>
+<td>{{edu.year_of_pass}}</td>
+<td>  {{edu.exam_passed}}</td>
+<td>{{edu.board}}</td>
+<td>{{edu.roll_no}}</td>
+<td>{{edu.cgpa_perc}}</td>
+<td>{{edu.scored}}</td>
+</tr>
+{%endfor%}
+</table>
+
+
+{% endblock %}

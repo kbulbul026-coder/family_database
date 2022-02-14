@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% if person_list %}
+  <ul>
+    {% for person in person_list %}
+      <li>
+        <a href="{% url "person-detail" person.id %}">{{ person.name }}</a> {% if person.vaccine %}(&#x2714;vaccinated){% else %}(&#10060; not vaccinated){% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No person added</p>
+  {% endif %}
+{% endblock %}

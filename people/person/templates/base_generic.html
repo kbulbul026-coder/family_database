@@ -1,0 +1,25 @@
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+
+th:nth-child(even),td:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+
+</style>
+
+</head>
+<body>
+<h3><a href="{% url "person" %}">All Members</a><h3
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
