@@ -53,6 +53,7 @@ class Jharsewa(models.Model):
         #cert_type=models.CharField(max_length=200, null=True,choices=JHAR)
         cert_no = models.CharField(max_length=200, null=True)
         token_no=models.CharField(max_length=200, null=True)
+        document = models.FileField(upload_to='jhar/',null=True,blank=True)
         def __str__(self):
                 return "%s %s" % (self.date_of_issue, self.cert_no)
 
@@ -66,6 +67,7 @@ class Identy(models.Model):
         #cert_type=models.CharField(max_length=200, null=True,choices=JHAR)
         cert_no = models.CharField(max_length=200, null=True)
         remark=models.CharField(max_length=200, null=True)
+        #idcard = models.FileField(upload_to='id/',null=True,blank=True)
         def __str__(self):
                 return "%s %s" % (self.id_type, self.cert_no)
 
@@ -98,6 +100,9 @@ class Education(models.Model):
         year_of_pass = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
         board = models.CharField(max_length=200, null=True, choices=BOARD)
         exam_passed = models.CharField(max_length=200, null=True, choices=EXAM)
+        admit = models.FileField(upload_to='admit/',null=True,blank=True)
+        marksheet = models.FileField(upload_to='marksheet/',null=True,blank=True)
+        passing = models.FileField(upload_to='pass/',null=True,blank=True)
         roll_no = models.CharField(max_length=200, null=True)
         cgpa_perc = models.CharField(max_length=200, null=True, choices=CGPA_PERC)
         scored=models.CharField(max_length=200, null=True)
