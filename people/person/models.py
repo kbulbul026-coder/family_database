@@ -48,12 +48,12 @@ class Jharsewa(models.Model):
               )
         person = models.ForeignKey(Person, on_delete= models.SET_NULL, null=True)
         #product = models.ForeignKey(Product, on_delete= models.SET_NULL, null=True)
-        date_of_issue = models.DateField(auto_now=False, auto_now_add=False, null=True)
+        date_of_issue = models.DateField()
         type = models.CharField(max_length=200, null=True, choices=JHAR)
         #cert_type=models.CharField(max_length=200, null=True,choices=JHAR)
         cert_no = models.CharField(max_length=200, null=True)
         token_no=models.CharField(max_length=200, null=True)
-        document = models.FileField(upload_to='jhar/',null=True,blank=True)
+        document = models.FileField(upload_to='jhar/',null=False,blank=False,default='default.jpg')
         def __str__(self):
                 return "%s %s" % (self.date_of_issue, self.cert_no)
 

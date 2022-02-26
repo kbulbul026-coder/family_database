@@ -1,7 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Person, Identy
+from .models import Person, Identy, Jharsewa
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class JharsewaForm(forms.ModelForm):
+    class Meta:
+        model = Jharsewa
+        fields = "__all__"
+        widgets = {
+            'date_of_issue': DateInput(),
+        }
 
 
 class UserRegisterForm(UserCreationForm):

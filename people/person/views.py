@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Person
 # Create your views here.
 from django.views import generic
-
+from django.http import HttpResponse,HttpResponseRedirect
 class PersonListView(generic.ListView):
     model = Person
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,7 +14,7 @@ class PersonDetailView(LoginRequiredMixin,generic.DetailView):
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
 # Import User UpdateForm, ProfileUpdatForm
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,IdentyUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,IdentyUpdateForm, JharsewaForm
 
 def register(request):
     if request.method == 'POST':
@@ -81,3 +81,20 @@ def identy(request):
     }
 
     return render(request, 'person/identy.html', context)
+
+def jharsewa(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = JharsewaForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            form.save()
+            # redirect to a new URL:
+            return HttpResponseRedirect('person')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = JharsewaForm()
+    return render(request, 'person/jharsewa.html', {'form': form})
