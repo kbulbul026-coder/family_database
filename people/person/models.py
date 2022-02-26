@@ -62,7 +62,7 @@ class Jharsewa(models.Model):
 
 class Identy(models.Model):
         ID=(("uida","uida"),("pan","pan"),("voter_id","voter_id"),("covid","covid"),)
-        person = models.OneToOneField(Person, on_delete= models.SET_NULL, null=True)
+        person = models.ForeignKey(Person, on_delete= models.SET_NULL, null=True)
         #product = models.ForeignKey(Product, on_delete= models.SET_NULL, null=True)
         #date_of_issue = models.DateField(auto_now=False, auto_now_add=False, null=T>
         id_type = models.CharField(max_length=200, null=True, choices=ID)
