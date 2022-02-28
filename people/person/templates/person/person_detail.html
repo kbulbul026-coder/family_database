@@ -44,13 +44,20 @@
 <th><stong>Id No</strong></th>
 <th><strong>Remark</strong></th>
 <th><strong>pdf</strong></th>
+<th><strong>update</strong></th>
 </tr>
 {% for id in person.identy_set.all %}
 <tr>
 <td>{{id.id_type}}</td>
 <td>  {{id.cert_no}}</td>
 <td>{{id.remark}}</td>
-<td>{% if id.idcard %}<iframe src="{{id.idcard.url}}" style="width: 100%;height: 100%;border: none"></iframe>{% endif %}</td>
+<td>{% if id.idcard %}<object data="{{id.idcard.url}}" type="application/pdf" width="750px" height="750px">
+    <embed src="{{id.idcard.url}}" type="application/pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="{{id.idcard.url}}">Download PDF</a>.</p>
+    </embed>
+</object>
+{% endif %}</td>
+<td><a href="{% url "idupdate" id.id %}">update</a></td>
 </tr>
 {%endfor%}
 </table>
