@@ -9,7 +9,7 @@ class DateInput(forms.DateInput):
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
-        fields = "__all__"
+        exclude = ['person']
         widgets = {
             'year_of_pass': DateInput(),
         }
@@ -18,7 +18,7 @@ class EducationForm(forms.ModelForm):
 class JharsewaForm(forms.ModelForm):
     class Meta:
         model = Jharsewa
-        fields = "__all__"
+        exclude = ['person']
         widgets = {
             'date_of_issue': DateInput(),
         }
@@ -43,10 +43,10 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = "__all__"
+        exclude = ['django_username']
 
 # Create a IdentyUpdateForm to update image
 class IdentyUpdateForm(forms.ModelForm):
     class Meta:
         model = Identy
-        fields = "__all__"
+        exclude = ['person']

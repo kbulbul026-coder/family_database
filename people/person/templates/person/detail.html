@@ -21,6 +21,7 @@
 <th><strong>Date of Issue</strong></th>
 <th><strong>Token No</strong></th>
 <th><strong>pdf</strong></th>
+<th><strong>Delete</strong></th>
 </tr>
 {% for jhar in person.jharsewa_set.all %}
 <tr>
@@ -29,6 +30,7 @@
 <td>{{jhar.date_of_issue}}</td>
 <td>{{jhar.token_no}}</td>
 <td><iframe src="{{jhar.document.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
+<td><a href="{% url "jhar_del" jhar.id %}">Delete</a></td>
 </tr>
 {%endfor%}
 </table>
@@ -78,6 +80,7 @@
 <th><strong>PassDoc</strong></th>
 <th><strong>MarkPdf</strong></th>
 <th><strong>AdmitPdf</strong></th>
+<th><strong>Delete</strong></th>
 </tr>
 {% for edu in person.education_set.all %}
 <tr>
@@ -90,6 +93,7 @@
 <td><iframe src="{{edu.passing.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
 <td><iframe src="{{edu.marksheet.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
 <td><iframe src="{{edu.admit.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
+<td><a href="{% url "edu_del" edu.id %}">DELETE</a></td>
 </tr>
 {%endfor%}
 </table>

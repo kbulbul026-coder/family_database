@@ -70,8 +70,11 @@ def profile(request):
                                    request.FILES,
                                    instance=request.user.person) 
         if u_form.is_valid() and p_form.is_valid():
+            id=p_form.save(commit=False)
+            id.django_username = request.user
+            id.save()
             u_form.save()
-            p_form.save()
+            #id.save()
             messages.success(request, f'Your account has been updated!')
             return redirect('/home') # Redirect back to profile page
 
@@ -117,8 +120,11 @@ def jharsewa(request):
         form = JharsewaForm(request.POST,request.FILES)
         # check whether it's valid:
         if form.is_valid():
+            jhar=form.save(commit=False)
+            jhar.person = request.user.person
+            jhar.save()
             # process the data in form.cleaned_data as required
-            form.save()
+            #form.save()
             # redirect to a new URL:
             return HttpResponseRedirect('/home')
 
@@ -136,8 +142,10 @@ def edu(request):
         form = EducationForm(request.POST,request.FILES)
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            form.save()
+            edud=form.save(commit=False)
+            edu.person = request.user.person
+            edu.save()
+            #form.save()
             # redirect to a new URL:
             return HttpResponseRedirect('/home')
 
@@ -146,26 +154,23 @@ def edu(request):
         form = EducationForm()
     return render(request, 'person/edu.html', {'form': form})
 
-
+from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404
 @login_required
 def idupdate(request,pk):
     idinst=Identy.objects.get(pk=pk)
-    i_form = IdentyUpdateForm(instance=idinst)
+    i_form = IdentyUpdateForm(initial=model_to_dict(idinst))
     if request.method == 'POST':
         #u_form = UserUpdateForm(request.POST, instance=request.user)
         #p_form = ProfileUpdateForm(request.POST, request.FILES,instance=request.us>
-        i_form = IdentyUpdateForm(request.POST,request.FILES,instance=request.idinst)
+        i_form = IdentyUpdateForm(request.POST,request.FILES,instance=idinst)
         if i_form.is_valid():
-            #u_form.save()
-            #p_form.save()
-            i_form.save()
-            messages.success(request, f'Your account id  has been updated!')
-            return redirect('/home') # Redirect back to profile page
-    else:
-        #u_form = UserUpdateForm(instance=request.user)
-        #p_form = ProfileUpdateForm(instance=request.user.person)
-        i_form = IdentyUpdateForm()
+            edu=i_form.save(commit=False)
+            edu.person = request.user.person
+            edu.save()
+            #form.save()
+            # redirect to a new URL:
+            return HttpResponseRedirect('/home')
     context = {
         'i_form': i_form,
     }
@@ -194,3 +199,30 @@ def home(request):
     person=Person.objects.get(django_username=request.user)
     context={"person":person,}
     return render(request, 'person/detail.html', context=context)
+
+@login_required
+def jhar_del(request,pk):
+    context ={}
+    jharid=get_object_or_404(Jharsewa,pk=pk)
+    if request.method == 'POST':
+        #u_form = UserUpdateForm(request.POST, instance=request.user)                           #p_form = ProfileUpdateForm(request.POST, request.FILES,instance=requ          >        #i_form = IdentyUpdateForm(request.POST,request.FILES,instance=idinst)
+        #if i_form.is_valid():
+        jharid.delete()
+        messages.success(request, f'Your one id  has been deleted!')
+        return redirect('/home') # Redirect back to profile page
+
+    return render(request, 'person/id_del.html', context)
+
+
+@login_required
+def edu_del(request,pk):
+    context ={}
+    jharid=get_object_or_404(Education,pk=pk)
+    if request.method == 'POST':
+        #u_form = UserUpdateForm(request.POST, instance=request.user)>
+        #if i_form.is_valid():
+        jharid.delete()
+        messages.success(request, f'Your one edu id  has been deleted!')
+        return redirect('/home') # Redirect back to profile page
+
+    return render(request, 'person/id_del.html', context)
