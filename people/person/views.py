@@ -73,7 +73,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('/profile') # Redirect back to profile page
+            return redirect('/home') # Redirect back to profile page
 
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -88,16 +88,17 @@ def profile(request):
 
 @login_required
 def identy(request):
+    i_form = IdentyUpdateForm({"person":request.user})
     if request.method == 'POST':
         #u_form = UserUpdateForm(request.POST, instance=request.user)
         #p_form = ProfileUpdateForm(request.POST, request.FILES,instance=request.user.person)
         i_form = IdentyUpdateForm(request.POST,request.FILES)
         if i_form.is_valid():
-            #u_form.save()
-            #p_form.save()
-            i_form.save()
+            id=i_form.save(commit=False)
+            id.person = request.user.person
+            id.save()
             messages.success(request, f'Your account id  has been updated!')
-            return redirect('/identy') # Redirect back to profile page
+            return redirect('/home') # Redirect back to profile page
 
     else:
         #u_form = UserUpdateForm(instance=request.user)
@@ -119,7 +120,7 @@ def jharsewa(request):
             # process the data in form.cleaned_data as required
             form.save()
             # redirect to a new URL:
-            return HttpResponseRedirect('/jharsewa')
+            return HttpResponseRedirect('/home')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -138,7 +139,7 @@ def edu(request):
             # process the data in form.cleaned_data as required
             form.save()
             # redirect to a new URL:
-            return HttpResponseRedirect('edu')
+            return HttpResponseRedirect('/home')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -149,17 +150,18 @@ def edu(request):
 from django.shortcuts import get_object_or_404
 @login_required
 def idupdate(request,pk):
-    idinst=get_object_or_404(Identy,pk=pk)
+    idinst=Identy.objects.get(pk=pk)
+    i_form = IdentyUpdateForm(instance=idinst)
     if request.method == 'POST':
         #u_form = UserUpdateForm(request.POST, instance=request.user)
         #p_form = ProfileUpdateForm(request.POST, request.FILES,instance=request.us>
-        i_form = IdentyUpdateForm(request.POST,request.FILES,instance=idinst)
+        i_form = IdentyUpdateForm(request.POST,request.FILES,instance=request.idinst)
         if i_form.is_valid():
             #u_form.save()
             #p_form.save()
             i_form.save()
             messages.success(request, f'Your account id  has been updated!')
-            return redirect('/index') # Redirect back to profile page
+            return redirect('/home') # Redirect back to profile page
     else:
         #u_form = UserUpdateForm(instance=request.user)
         #p_form = ProfileUpdateForm(instance=request.user.person)
@@ -184,7 +186,11 @@ def id_del(request,pk):
         #if i_form.is_valid():
         idinst.delete()
         messages.success(request, f'Your one id  has been deleted!')
-        return redirect('/index') # Redirect back to profile page
+        return redirect('/home') # Redirect back to profile page
 
     return render(request, 'person/id_del.html', context)
 
+def home(request):
+    person=Person.objects.get(django_username=request.user)
+    context={"person":person,}
+    return render(request, 'person/detail.html', context=context)

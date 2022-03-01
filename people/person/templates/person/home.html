@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>My Page</title>{% endblock %}
+{% block content %}
+  <h1>My Page</h1>
+  <p>Welcome to Digilocker, a website developed</p>
+<h2>Dynamic content</h2>
+  <p>You  have the following record:</p>
+  <ul>
+    <li><strong>Hello</strong> {{ human.name }}</li>
+  </ul>
+
+
+{% endblock %}

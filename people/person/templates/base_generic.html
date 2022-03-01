@@ -25,12 +25,13 @@ th:nth-child(even),td:nth-child(even) {
 <body>
 <div class="container-sm border py-3 my-3">
 <div class="container border py-3 my-3"><h3><a href="{% url "persons" %}"class="btn">All Members</a><h3>
-<a href="{% url 'index' %}"class="btn btn-info">Home</a>
+<a href="{% url 'index' %}"class="btn btn-info">Counter</a>
 <div>
 {% if user.is_authenticated %}
      User: {{ user.get_username }}
+<a href="{% url 'home' %}"class="btn btn-info">MyHome</a>
 <a href="{% url 'profile' %}"class="btn btn-info">Profile</a>
-     <a href="{% url 'logout'%}?next={{request.path}}"class="btn btn-danger">Logout</a>
+<a href="{% url 'logout'%}?next=/"class="btn btn-danger">Logout</a>
    {% else %}
      <a href="{% url 'login'%}?next={{request.path}}"class="btn btn-secondary">Login</a>
      <a href="{% url 'register' %}"class="btn btn-warning">Register</a>
