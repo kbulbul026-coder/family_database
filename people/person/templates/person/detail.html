@@ -21,6 +21,7 @@
 <th><strong>Date of Issue</strong></th>
 <th><strong>Token No</strong></th>
 <th><strong>pdf</strong></th>
+<th><strong>Update</strong></th>
 <th><strong>Delete</strong></th>
 </tr>
 {% for jhar in person.jharsewa_set.all %}
@@ -30,7 +31,8 @@
 <td>{{jhar.date_of_issue}}</td>
 <td>{{jhar.token_no}}</td>
 <td><iframe src="{{jhar.document.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
-<td><a href="{% url "jhar_del" jhar.id %}">Delete</a></td>
+<td><a href="{% url "jharupdate" jhar.id %}"class="btn btn-warning">update</a></td>
+<td><a href="{% url "jhar_del" jhar.id %}"class="btn btn-danger">Delete</a></td>
 </tr>
 {%endfor%}
 </table>
@@ -59,8 +61,8 @@
     </embed>
 </object>
 {% endif %}</td>
-<td><a href="{% url "id_del" id.id %}">DELETE</a></td>
-<td><a href="{% url "idupdate" id.id %}">update</a></td>
+<td><a href="{% url "id_del" id.id %}"class="btn btn-danger">DELETE</a></td>
+<td><a href="{% url "idupdate" id.id %}"class="btn btn-warning">update</a></td>
 </tr>
 {%endfor%}
 </table>
@@ -81,6 +83,7 @@
 <th><strong>MarkPdf</strong></th>
 <th><strong>AdmitPdf</strong></th>
 <th><strong>Delete</strong></th>
+<th><strong>Update</strong></th>
 </tr>
 {% for edu in person.education_set.all %}
 <tr>
@@ -93,7 +96,8 @@
 <td><iframe src="{{edu.passing.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
 <td><iframe src="{{edu.marksheet.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
 <td><iframe src="{{edu.admit.url}}" style="width: 100%;height: 100%;border: none;"></iframe></td>
-<td><a href="{% url "edu_del" edu.id %}">DELETE</a></td>
+<td><a href="{% url "edu_del" edu.id %}"class="btn btn-danger">DELETE</a></td>
+<td><a href="{% url "eduupdate" edu.id %}"class="btn btn-warning">Update</a></td>
 </tr>
 {%endfor%}
 </table>

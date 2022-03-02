@@ -161,15 +161,11 @@ def idupdate(request,pk):
     idinst=Identy.objects.get(pk=pk)
     i_form = IdentyUpdateForm(initial=model_to_dict(idinst))
     if request.method == 'POST':
-        #u_form = UserUpdateForm(request.POST, instance=request.user)
-        #p_form = ProfileUpdateForm(request.POST, request.FILES,instance=request.us>
         i_form = IdentyUpdateForm(request.POST,request.FILES,instance=idinst)
         if i_form.is_valid():
             edu=i_form.save(commit=False)
             edu.person = request.user.person
             edu.save()
-            #form.save()
-            # redirect to a new URL:
             return HttpResponseRedirect('/home')
     context = {
         'i_form': i_form,
@@ -177,6 +173,40 @@ def idupdate(request,pk):
 
     return render(request, 'person/identy.html', context)
 
+@login_required
+def jharupdate(request,pk):
+    idinst=Jharsewa.objects.get(pk=pk)
+    i_form = JharsewaForm(initial=model_to_dict(idinst))
+    if request.method == 'POST':
+        i_form = JharsewaForm(request.POST,request.FILES,instance=idinst)
+        if i_form.is_valid():
+            edu=i_form.save(commit=False)
+            edu.person = request.user.person
+            edu.save()
+            return HttpResponseRedirect('/home')
+    context = {
+        'i_form': i_form,
+    }
+
+    return render(request, 'person/identy.html', context)
+
+
+@login_required
+def eduupdate(request,pk):
+    idinst=Education.objects.get(pk=pk)
+    i_form = EducationForm(initial=model_to_dict(idinst))
+    if request.method == 'POST':
+        i_form = EducationForm(request.POST,request.FILES,instance=idinst)
+        if i_form.is_valid():
+            edu=i_form.save(commit=False)
+            edu.person = request.user.person
+            edu.save()
+            return HttpResponseRedirect('/home')
+    context = {
+        'i_form': i_form,
+    }
+
+    return render(request, 'person/identy.html', context)
 
 
 
