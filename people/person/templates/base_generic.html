@@ -32,6 +32,7 @@ th:nth-child(even),td:nth-child(even) {
 <a href="{% url 'home' %}"class="btn btn-info">MyHome</a>
 <a href="{% url 'profile' %}"class="btn btn-info">Profile</a>
 <a href="{% url 'logout'%}?next=/"class="btn btn-danger">Logout</a>
+<button onclick="window.print()">Print this page</button>
    {% else %}
      <a href="{% url 'login'%}?next={{request.path}}"class="btn btn-secondary">Login</a>
      <a href="{% url 'register' %}"class="btn btn-warning">Register</a>
