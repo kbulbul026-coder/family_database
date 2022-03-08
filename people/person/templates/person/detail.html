@@ -1,11 +1,14 @@
 
 {% extends "base_generic.html" %}
 {% block content %}
-
+<div class="dropdown">
+  <button class="dropbtn">Update</button>
+  <div class="dropdown-content">
 <a href="{% url 'jharsewa' %}"class="btn btn-secondary">jharupdate</a>
-<a href="{% url 'education' %}"class="btn btn-secondary">EduUpdate</a>
+<a href="{% url 'education' %}"class="btn btn-warning">EduUpdate</a>
 <a href="{% url 'identy' %}"class="btn btn-secondary">IdentyUpdate</a>
-
+</div>
+</div>
 <div class="row">
 
   <div id="corner1"class="column">

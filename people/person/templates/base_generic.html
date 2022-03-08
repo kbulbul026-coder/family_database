@@ -15,22 +15,23 @@
 </head>
 <body>
 <div class="container-fluid">
+<div class="all">
 <button onclick="myFunction()">Go Back</button>
-<button type="button"
-onclick="document.getElementById('demo').innerHTML = Date()">
+<button type="button"onclick="document.getElementById('demo').innerHTML = Date()">
 Click me to display Date and Time.</button>
 <p id="demo">
 
 <button onclick="window.print()">Print this page</button>
+</div>
 <div class="topnav">
+<div class="all">
 <a href="{% url "persons" %}"class="btn">All Members</a>
-
-
 <a href="{% url 'index' %}"class="btn btn-info">Counter</a>
-
+</div>
 {% if user.is_authenticated %}
-     User: {{ user.get_username }}
 <ul>
+<li class="btn btn-success">     User: {{ user.get_username }}</li>
+
 <li><a href="{% url 'home' %}"class="btn btn-info">MyHome</a></li>
 <li><a href="{% url 'profile' %}"class="btn btn-info">Profile</a></li>
 <li><a href="{% url 'logout'%}?next=/"class="btn btn-danger">Logout</a></li>
