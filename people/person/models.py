@@ -119,3 +119,45 @@ class Education(models.Model):
         scored=models.CharField(max_length=200, null=True)
         def __str__(self):
                 return "%s %s %s" % (self.year_of_pass, self.scored, self.exam_passed)
+
+
+
+
+class Special(models.Model):
+        CGPA_PERC=(
+                     ("CGPA","CGPA"),
+                     ("percentage","percentage"),
+                         )
+
+
+        DEGREE=[
+             ('Tech', (
+            ('sem1', 'sem1'),
+            ('sem2', 'sem2'),("sem3","sem3"),("sem4","sem4"),("sem5","sem5"),("sem6","sem6"),("sem7","sem7"),("sem8","sem8"),
+            )
+          ),
+           ('General_6sem_Graduate', (
+            ('sem1', 'sem1'),
+            ('sem2', 'sem2'),("sem3","sem3"),("sem4","sem4"),("sem5","sem5"),("sem6","sem6"),
+          )
+          ),
+           ('General_3yr_Graduate', (
+            ('part1', 'part1'),
+            ('part2', 'part2'),("part3","part3"),
+          )
+          ),
+           ('final', 'final'),
+           ]
+        person = models.ForeignKey(Person, on_delete= models.SET_NULL, null=True)
+        #product = models.ForeignKey(Product, on_delete= models.SET_NULL, null=True)
+        year_of_pass = models.DateField()
+        #board = models.CharField(max_length=200, null=True, choices=BOARD)
+        exam_passed = models.CharField(max_length=200, null=True, choices=DEGREE)
+        admit = models.FileField(upload_to='admit_sp/',null=True,blank=True)
+        marksheet = models.FileField(upload_to='marksheet_sp/',null=True,blank=True)
+        #passing = models.FileField(upload_to='pass/',null=True,blank=True)
+        specialisation = models.CharField(max_length=200, null=True)
+        cgpa_perc = models.CharField(max_length=200, null=True, choices=CGPA_PERC)
+        scored=models.CharField(max_length=200, null=True)
+        def __str__(self):
+                return "%s %s %s" % (self.year_of_pass, self.scored, self.exam_passed)

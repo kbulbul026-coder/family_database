@@ -27,16 +27,20 @@
 
 <button onclick="window.print()"><i class="fa fa-print" style="font-size:48px;color:red"></i></button>
 -->
-<div class="boss">
-<a href="{% url "persons" %}"class="btn"><i class='far fa-address-book' style='color:red;font-size:48px;'></i></a>
+
+<div class="dropdown">
+  <button class="dropbtn"><i class="material-icons" style="font-size:48px;color:red">update</i></button>
+  <div class="dropdown-content">
+<a href="{% url "persons" %}"class="btn"><i class='far fa-address-book' style='font-size:48px;color:red'></i></a>
 <a href="{% url 'index' %}"class="btn btn-info"><i class="fa fa-info-circle" style="font-size:48px;color:red"></i></a>
 </div>
+
 {% if user.is_authenticated %}
 <ul>
-<li><button><i class='fas fa-user-lock' style='color:red;font-size:48px;'></i>{{ user.get_username }}</button></li>
+<li class="btn btn-success">     User: {{ user.get_username }}</li>
 
-<li><a href="{% url 'home' %}"class="btn"><i class="fa fa-home" style="color:red;font-size:48px;"></i></a></li>
-<li><a href="{% url 'profile' %}"class="btn btn-info"><i class='fas fa-user-edit' style='color:red ;font-size:48px;'></i></a></li>
+<li><a href="{% url 'home' %}"class="btn"><i class="fa fa-home" style="color:red;font-size:48;""></i></a></li>
+<li><a href="{% url 'profile' %}"class="btn btn-info"><i class="fa fa-edit" style="color:red"></i>Profile</a></li>
 <li><a href="{% url 'logout'%}?next=/"class="btn btn-danger">Logout</a></li>
 </ul>
    {% else %}

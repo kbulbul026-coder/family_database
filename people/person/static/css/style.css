@@ -1,8 +1,30 @@
+ .previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+.round {
+  border-radius: 50%;
+}
+
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+.btn:hover {
+  background-color: RoyalBlue;
+}
 
 
 .dropbtn {
-  background-color: #4CAF50;
-  color: white;
+  background-color: none;
+  color: #4CAF50;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -59,39 +81,36 @@
 
 #corner1 {
   border-radius: 15px 50px 30px 5px;
-  background: #73AD21;
+  background: #99ff66;
   padding: 20px; 
   width: 100%;
   height: 100%; 
 }
 
-.all {
-  float: left;
+.nall {
+  float: right;
   border-right: 1px solid #bbb;
-  text-align: center;
+  text-align: right;
   position: absolute;
-  left: 0px;
+  
+  margin-left: 800px;  
   top: 0px;
   z-index: -1; 
   display: inline;
+  
 }
 
 
-#corner3 {
-  border-radius: 15px;
-  background: #73AD21;
-  padding: 20px;
-  width: 100%;
-  height: 100%;
-}
 
 table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
-
+  
+  
 }
 td {
   text-align: center;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 tr:nth-child(even) {
   background-color: rgba(150, 212, 212, 0.4);
@@ -100,11 +119,7 @@ tr:nth-child(even) {
 th:nth-child(even),td:nth-child(even) {
   background-color: rgba(150, 212, 212, 0.4);
 }
-div {
-  background-color: lightgrey;
-  
-  
-}
+
 h1{
   text-shadow: 2px 2px;
   font-size: 40px;
@@ -166,6 +181,7 @@ li:last-child {
   float: left;
   width: 33.33%;
   padding: 15px;
+  border: 3px solid #73AD21;
 }
 .row:after {
   content: "";
