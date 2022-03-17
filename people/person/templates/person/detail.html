@@ -26,8 +26,12 @@
 </div>
 
 {% if person.jharsewa_set.all %}
+
+
+
+<div id="London" class="tabcontent">
 <div id ="corner2"class="column">
-<h3 class="head"><i class="fa fa-certificate" style="font-size:48px;color:red"></i>jharsewa</h3>
+<h3 class="head"><i class="fa fa-certificate" style="font-size:32px;color:red"></i>jharsewa</h3>
 <div style="overflow-x: auto;">
 <table>
 <tr>
@@ -53,12 +57,13 @@
 </table>
 </div>
 </div>
+</div>
 {% endif %}
 
 {% if person.identy_set.all %}
-
+<div id="Paris" class="tabcontent">
 <div id="corner3" class="column">
-<h3 class="head"><i class="fa-solid fa-id-card" style="font-size:48px;color:red;"></i>Identy cards</h3>
+<h3 class="head"><i class="fa-solid fa-id-card" style="font-size:32px;color:red;"></i>Identy cards</h3>
 <div style="overflow-x: auto;">
 <table>
 <tr>
@@ -74,21 +79,24 @@
 <td>{{id.id_type}}</td>
 <td>  {{id.cert_no}}</td>
 <td>{{id.remark}}</td>
-<td>{% if id.idcard %}<a href="{{id.idcard.url}}"><button class="btn"><i class="fas fa-file-download"style="font-size:48px;color:MediumSeaGreen"></i>Download</button></a>
+<td>{% if id.idcard %}<a href="{% url "pdf" id.id %}"><button class="btn"><i class="fas fa-file-download"style="font-size:48px;color:MediumSeaGreen"></i>view</button></a>
 {% endif %}</td>
 <td><a href="{% url "id_del" id.id %}"class="btn"><i class="fa fa-remove" style="font-size:48px;color:red"></i>Delete</a></td>
-<td><a href="{% url "idupdate" id.id %}"><i class="fa fa-edit" style="font-size:48px;color:blue"></i>Edit</a></td>
+<td><a href="{% url "idupdate" id.id %}"><i class="fa fa-edit" style="font-size:32px;color:blue"></i>Edit</a></td>
 </tr>
 {%endfor%}
 </table>
+</div>
 </div>
 </div>
 {% endif %}
 
 
 {% if person.education_set.all %}
+
+<div id="Tokyo" class="tabcontent">
 <div id="corner4" class="column">
-<h3 class="head"><i class='fas fa-book-reader' style='font-size:48px;color:red'></i>Education</h3>
+<h3 class="head"><i class='fas fa-book-reader' style='font-size:32px;color:red'></i>Education</h3>
 <div style="overflow-x: auto;">
 <table>
 <tr>
@@ -122,11 +130,13 @@
 </table>
 </div>
 </div>
+</div>
 {% endif %}
 
 {% if person.special_set.all %}
-<div id="corner4" class="column">
-<h3 class="head"><i class='fas fa-award' style='font-size:48px;color:red'></i>Specialization</h3>
+<div id="Delhi" class="tabcontent">
+<div id="corner5" class="column">
+<h3 class="head"><i class='fas fa-award' style='font-size:32px;color:red'></i>Specialization</h3>
 <div style="overflow-x: auto;">
 <table>
 <tr>
@@ -153,8 +163,30 @@
 </div>
 </div>
 </div>
+</div>
 {% endif %}
 
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Jharsewa</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Issued ids</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Education</button>
+  <button class="tablinks" onclick="openCity(event, 'Delhi')">Specialisation</button>
+</div>
 
-
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+   
 {% endblock %}

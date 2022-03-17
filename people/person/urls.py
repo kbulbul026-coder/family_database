@@ -20,5 +20,5 @@ urlpatterns = [
     path('jhardel/<int:pk>/delete', views.jhar_del, name='jhar_del'),
     path('edudel/<int:pk>/delete', views.edu_del, name='edu_del'),
     path('home/', views.home, name='home'),
-
+    path('idview/<int:pk>/pdf/', views.pdf, name='pdf'),
 ]

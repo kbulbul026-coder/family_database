@@ -1,3 +1,54 @@
+.tablink:hover {
+  background-color: #777;
+}
+
+
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -221,8 +272,7 @@ ul {
   top: 0;
   width: 100%;  
  
-  position: -webkit-sticky; /* Safari */
-  position: sticky;  
+   
   
   overflow: auto;
 }
@@ -254,7 +304,7 @@ li {
   float: left;
   border-right: 1px solid #bbb;
   text-align: center;
- a
+ 
   display: inline;
 }
 
@@ -263,7 +313,7 @@ li:last-child {
   
 }
 
-.column {
+.ncolumn {
   float: left;
   width: 33.33%;
   padding: 15px;

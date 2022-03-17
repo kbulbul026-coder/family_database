@@ -256,3 +256,20 @@ def edu_del(request,pk):
         return redirect('/home') # Redirect back to profile page
 
     return render(request, 'person/id_del.html', context)
+
+import subprocess
+#pdf
+@login_required
+def pdf(request, pk):
+
+    #Get the applicant's resume
+    pdff = Identy.objects.get(pk=pk)
+    #with subprocess.Popen([pdff.idcard],) as pdf:
+    #response = HttpResponse(pdff.idcard)
+    response = HttpResponse(pdff.idcard.read(),content_type='application/pdf' )
+    response['Content-Disposition'] = 'inline;'
+        #response = HttpResponse(fsock, mimetype='application/pdf')
+
+    return response
+
+    #pdf.closed
