@@ -28,6 +28,7 @@
 
 <button onclick="window.print()"><i class="fa fa-print" style="font-size:48px;color:red"></i></button>
 -->
+{% if user.is_superuser %}
 <div class="topnav">
   <a href="#home" class="active">Home</a>
   <div id="myLinks">
@@ -38,7 +39,7 @@
     <i class="fa fa-bars"></i>
   </a>
 </div>
-
+{% endif %}
 
 
 {% if user.is_authenticated %}
