@@ -7,10 +7,12 @@
   <p>The Digilocker  has the following record counts:</p>
   <ol>
     <li><strong>Total member:</strong> {{ num_person }}</li>
+{% if user.is_superuser %}
     <li><strong>Identy cards:</strong> {{ num_id }}</li>
     <li><strong>Jharsewa certificates:</strong> {{ num_jhar }}</li>
     <li><strong>Educational certificates:</strong> {{ num_edu }}</li>
-  </ol>
+ {% endif %} 
+ </ol>
 <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
 
 {% endblock %}
